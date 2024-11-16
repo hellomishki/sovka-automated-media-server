@@ -1,0 +1,17 @@
+.env
+.readarr/
+bazarr/
+gluetun/
+heimdall/
+jackett/
+lidarr/
+nzbget/
+organizr/
+overseerr/
+privoxy/
+prowlarr/
+qbittorrent/
+radarr/
+sabnzbd/
+sonarr/
+tautulli/
