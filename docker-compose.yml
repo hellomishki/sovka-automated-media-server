@@ -1,7 +1,8 @@
 ---
+version: "3"
 services:
   gluetun:
-    image: qmcgaw/gluetun:latest
+    image: ghcr.io/qdm12/gluetun
     container_name: gluetun
     cap_add:
       - NET_ADMIN
@@ -28,22 +29,22 @@ services:
       - UPDATER_PERIOD=$UPDATER_PERIOD
       - UPDATER_VPN_SERVICE_PROVIDERS=$UPDATER_VPN_SERVICE_PROVIDERS
     restart: unless-stopped  
-  # qbittorrent:
-  #   image: lscr.io/linuxserver/qbittorrent:$TAG
-  #   container_name: qbittorrent
-  #   environment:
-  #     - PUID=$PUID
-  #     - PGID=$PGID
-  #     - TZ=$TZ
-  #     - WEBUI_PORT=8081
-  #   volumes:
-  #     - ./qbittorrent:/config
-  #     - /mnt/mymount/data:/data
-  #   depends_on:
-  #     gluetun:
-  #       condition: service_healthy
-  #   network_mode: "service:gluetun"
-  #   restart: always
+  qbittorrent:
+    image: lscr.io/linuxserver/qbittorrent:$TAG
+    container_name: qbittorrent
+    environment:
+      - PUID=$PUID
+      - PGID=$PGID
+      - TZ=$TZ
+      - WEBUI_PORT=8081
+    volumes:
+      - ./qbittorrent:/config
+      - e:/downloads:/downloads
+    depends_on:
+      gluetun:
+        condition: service_healthy
+    network_mode: "service:gluetun"
+    restart: always
   sabnzbd:
     image: lscr.io/linuxserver/sabnzbd:$TAG
     container_name: sabnzbd-original 
@@ -53,7 +54,8 @@ services:
       - TZ=$TZ
     volumes:
       - ./sabnzbd:/config
-      - /mnt/mymount/data/usenet:/data/usenet
+      - e:/downloads:/downloads
+      - e:/incomplete-downloads:/incomplete-downloads #optional
     depends_on:
       gluetun:
         condition: service_healthy
@@ -106,7 +108,9 @@ services:
       - TZ=$TZ
     volumes:
       - ./sonarr:/config
-      - /mnt/mymount/data:/data
+      - e:/media/tv:/tv
+      - e:/media/kids-tv:/kids-tv
+      - e:/downloads:/downloads
     depends_on:
       - sabnzbd
     ports:
@@ -121,7 +125,9 @@ services:
       - TZ=$TZ
     volumes:
       - ./radarr:/config
-      - /mnt/mymount/data:/data
+      - e:/media/movies:/movies
+      - e:/media/kids-movies:/kids-movies
+      - e:/downloads:/downloads
     depends_on:
       - sabnzbd
     ports:
@@ -136,7 +142,8 @@ services:
       - TZ=$TZ
     volumes:
       - ./lidarr:/config
-      - /mnt/mymount/data:/data
+      - e:/media/music:/music
+      - e:/downloads:/downloads
     depends_on:
       - sabnzbd
     ports:
@@ -151,7 +158,8 @@ services:
       - TZ=$TZ
     volumes:
       - .readarr:/config
-      - /mnt/mymount/data:/data
+      - e:/media/books:/books
+      - e:/downloads:/downloads
     depends_on:
       - sabnzbd  
     ports:
@@ -186,6 +194,19 @@ services:
   #     - PUID=$PUID
   #     - PGID=$PGID
   #     - TZ=$TZ
+  # heimdall:
+  #   image: lscr.io/linuxserver/heimdall:$TAG
+  #   container_name: heimdall
+  #   environment:
+  #     - PUID=$PUID
+  #     - PGID=$PGID
+  #     - TZ=$TZ
+  #   volumes:
+  #     - ./heimdall:/config
+  #   ports:
+  #     - 80:80
+  #     - 443:443
+  #   restart: unless-stopped
   tautulli:
     image: ghcr.io/linuxserver/tautulli:$TAG
     container_name: tautulli
@@ -196,7 +217,7 @@ services:
     volumes:
       - ./tautulli:/config
     ports:
-      - 8383:8383
+      - 8181:8181
     restart: unless-stopped
   bazarr:
     image: lscr.io/linuxserver/bazarr:latest
@@ -209,5 +230,6 @@ services:
       - 6767:6767
     volumes:
       - ./bazarr/config:/config
-      - /mnt/mymount/data:/data
+      - e:/media/tv:/movies
+      - e:/media/movies:/tv
     restart: unless-stopped
