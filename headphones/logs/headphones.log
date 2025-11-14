@@ -1,0 +1,26 @@
+25-Nov-2024 08:24:51 - INFO    :: MainThread : Checking to see if the database has all tables....
+25-Nov-2024 08:24:51 - INFO    :: MainThread : Retrieving latest version information from GitHub
+25-Nov-2024 08:24:52 - INFO    :: MainThread : Comparing currently installed version with latest GitHub version
+25-Nov-2024 08:24:52 - INFO    :: MainThread : New version is available. You are 46 commits behind
+25-Nov-2024 08:24:52 - INFO    :: MainThread : Starting Headphones web server on http://0.0.0.0:8181/
+25-Nov-2024 08:24:53 - INFO    :: MainThread : Scheduled background task: Search for Wanted
+25-Nov-2024 08:24:53 - INFO    :: MainThread : Scheduled background task: Download Scan
+25-Nov-2024 08:24:53 - INFO    :: MainThread : Scheduled background task: Library Scan
+25-Nov-2024 08:24:53 - INFO    :: MainThread : Scheduled background task: MusicBrainz Update
+25-Nov-2024 08:24:53 - INFO    :: MainThread : Scheduled background task: Check GitHub for updates
+25-Nov-2024 10:11:26 - INFO    :: MainThread : Signal 15 caught, saving and exiting...
+25-Nov-2024 10:11:26 - INFO    :: MainThread : Writing configuration to file
+25-Nov-2024 10:11:26 - INFO    :: MainThread : Headphones is shutting down...
+25-Nov-2024 10:11:35 - INFO    :: MainThread : Checking to see if the database has all tables....
+25-Nov-2024 10:11:35 - INFO    :: MainThread : Retrieving latest version information from GitHub
+25-Nov-2024 10:11:35 - INFO    :: MainThread : Comparing currently installed version with latest GitHub version
+25-Nov-2024 10:11:36 - INFO    :: MainThread : New version is available. You are 46 commits behind
+25-Nov-2024 10:11:36 - INFO    :: MainThread : Starting Headphones web server on http://0.0.0.0:8181/
+25-Nov-2024 10:11:36 - INFO    :: MainThread : Scheduled background task: Search for Wanted
+25-Nov-2024 10:11:36 - INFO    :: MainThread : Scheduled background task: Download Scan
+25-Nov-2024 10:11:36 - INFO    :: MainThread : Scheduled background task: Library Scan
+25-Nov-2024 10:11:36 - INFO    :: MainThread : Scheduled background task: MusicBrainz Update
+25-Nov-2024 10:11:36 - INFO    :: MainThread : Scheduled background task: Check GitHub for updates
+25-Nov-2024 10:16:02 - INFO    :: MainThread : Signal 15 caught, saving and exiting...
+25-Nov-2024 10:16:03 - INFO    :: MainThread : Writing configuration to file
+25-Nov-2024 10:16:03 - INFO    :: MainThread : Headphones is shutting down...
